@@ -1,0 +1,21 @@
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+}
+.hero {
+    /* ... */
+}
+.footer{
+    background-color: black;
+    border-radius: 25px;
+    padding: 30px 6% 12px;
+    margin-top: 40px;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto 0;
+    
+
+}

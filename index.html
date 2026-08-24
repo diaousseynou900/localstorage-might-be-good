@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EM Local</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Bootstrap -->
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link 
+        rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    >
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="#">
+            EM Local
+        </a>
+
+        <button 
+            class="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarSupportedContent">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div 
+            class="collapse navbar-collapse" 
+            id="navbarSupportedContent">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+    <a class="nav-link active" href="#accueil">
+        Accueil
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="#apropos">
+        À propos
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="#contacts">
+        Contacts
+    </a>
+</li>
+
+
+
+            </ul>
+
+            <!-- RECHERCHE -->
+
+           <form class="d-flex" id="search-form" role="search">
+
+    <input 
+        class="form-control me-2" 
+        id="search-input"
+        type="search" 
+        placeholder="Rechercher un produit..."
+        autocomplete="off"
+    >
+
+    <button 
+        class="btn btn-outline-success" 
+        type="submit">
+        Search
+    </button>
+
+</form>
+
+
+            <!-- PANIER -->
+
+            <div class="ms-3">
+
+                <button 
+                    class="cart-button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#cartOffcanvas">
+
+                    <i class="bi bi-bag"></i>
+
+                    <span id="cart-count" class="cart-count">
+                        0
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="accueil">
+
+    <div>
+
+        <h1 class="h1dec">
+        </h1>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= PRODUITS ================= -->
+
+<section>
+
+<div class="container mt-5">
+
+<div class="row g-4">
+
+
+<!-- ================= SHORTS & PANTS ================= -->
+
+<div class="col-12">
+
+    <h2 class="h2">
+        Shorts & Pants
+    </h2>
+
+</div>
+
+
+<!-- 1 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="shorts/IMG_2152.jpeg"
+class="card-img-top"
+alt="Camo Margiela"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Camo Margiela
+</h5>
+
+<p class="price">
+CFA 12,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="camo-margiela"
+data-name="Camo Margiela"
+data-price="12000"
+data-image="shorts/IMG_2152.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 2 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="shorts/IMG_2153.jpeg"
+class="card-img-top"
+alt="Chrome Hearts"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Chrome Hearts
+</h5>
+
+<p class="price">
+CFA 20,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="chrome-hearts-short"
+data-name="Chrome Hearts"
+data-price="20000"
+data-image="shorts/IMG_2153.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 3 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="shorts/IMG_2150.jpeg"
+class="card-img-top"
+alt="Hellstar"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Hellstar
+</h5>
+
+<p class="price">
+CFA 31,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="hellstar"
+data-name="Hellstar"
+data-price="31000"
+data-image="shorts/IMG_2150.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 4 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="shorts/IMG_2151.jpeg"
+class="card-img-top"
+alt="Lacoste"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Lacoste
+</h5>
+
+<p class="price">
+CFA 8,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="lacoste"
+data-name="Lacoste"
+data-price="8000"
+data-image="shorts/IMG_2151.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 5 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="pants/IMG_2131.jpeg"
+class="card-img-top"
+alt="Zara"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Zara
+</h5>
+
+<p class="price">
+CFA 7,500
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="zara"
+data-name="Zara"
+data-price="7500"
+data-image="pants/IMG_2131.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 6 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="pants/IMG_2136.jpeg"
+class="card-img-top"
+alt="Rick Owens"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Rick Owens
+</h5>
+
+<p class="price">
+CFA 55,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="rick-owens"
+data-name="Rick Owens"
+data-price="55000"
+data-image="pants/IMG_2136.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- ================= LONG SLEEVE & SHIRTS ================= -->
+
+<div class="col-12 mt-5">
+
+<h2 class="h2">
+Long Sleeve & Shirts
+</h2>
+
+</div>
+
+
+<!-- 7 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="sleeve&shirts/IMG_2137.jpeg"
+class="card-img-top"
+alt="Chrome Hearts"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Chrome Hearts
+</h5>
+
+<p class="price">
+CFA 6,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="chrome-hearts-shirt-1"
+data-name="Chrome Hearts"
+data-price="6000"
+data-image="sleeve&shirts/IMG_2137.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 8 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="sleeve&shirts/IMG_2158.jpeg"
+class="card-img-top"
+alt="Walkpark"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Walkpark
+</h5>
+
+<p class="price">
+CFA 10,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="walkpark"
+data-name="Walkpark"
+data-price="10000"
+data-image="sleeve&shirts/IMG_2158.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 9 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="sleeve&shirts/IMG_2156.jpeg"
+class="card-img-top"
+alt="H&M"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+H&M
+</h5>
+
+<p class="price">
+CFA 9,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="hm"
+data-name="H&M"
+data-price="9000"
+data-image="sleeve&shirts/IMG_2156.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 10 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="sleeve&shirts/IMG_2143.jpeg"
+class="card-img-top"
+alt="H&M Sleeve"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+H&M Sleeve
+</h5>
+
+<p class="price">
+CFA 5,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="hm-sleeve"
+data-name="H&M Sleeve"
+data-price="5000"
+data-image="sleeve&shirts/IMG_2143.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 11 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="sleeve&shirts/IMG_2141.jpeg"
+class="card-img-top"
+alt="Chrome Hearts Sleeve"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Chrome Hearts Sleeve
+</h5>
+
+<p class="price">
+CFA 22,500
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="chrome-hearts-sleeve"
+data-name="Chrome Hearts Sleeve"
+data-price="22500"
+data-image="sleeve&shirts/IMG_2141.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 12 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="sleeve&shirts/IMG_2140.jpeg"
+class="card-img-top"
+alt="Chrome Hearts Shirt"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Chrome Hearts Shirt
+</h5>
+
+<p class="price">
+CFA 14,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="chrome-hearts-shirt-2"
+data-name="Chrome Hearts Shirt"
+data-price="14000"
+data-image="sleeve&shirts/IMG_2140.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- ================= JACKETS ================= -->
+
+<div class="col-12 mt-5">
+
+<h2 class="h2">
+Jackets
+</h2>
+
+</div>
+
+
+<!-- 13 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="jackets/IMG_2154.jpeg"
+class="card-img-top"
+alt="Louis Vuitton Coat"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Louis Vuitton Coat
+</h5>
+
+<p class="price">
+CFA 42,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="lv-coat"
+data-name="Louis Vuitton Coat"
+data-price="42000"
+data-image="jackets/IMG_2154.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 14 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="jackets/IMG_2161.jpeg"
+class="card-img-top"
+alt="Luis Vuitton Jacket"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Luis Vuitton Jacket
+</h5>
+
+<p class="price">
+CFA 19,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="lv-jacket-1"
+data-name="Luis Vuitton Jacket"
+data-price="19000"
+data-image="jackets/IMG_2161.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 15 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="jackets/IMG_2162.jpeg"
+class="card-img-top"
+alt="Louis Vuitton Jacket"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Louis Vuitton Jacket
+</h5>
+
+<p class="price">
+CFA 21,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="lv-jacket-2"
+data-name="Louis Vuitton Jacket"
+data-price="21000"
+data-image="jackets/IMG_2162.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 16 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="jack/IMG_2172.jpeg"
+class="card-img-top"
+alt="Celine Coat"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Celine Coat
+</h5>
+
+<p class="price">
+CFA 42,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="celine-coat"
+data-name="Celine Coat"
+data-price="42000"
+data-image="jack/IMG_2172.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 17 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="jack/IMG_2168.jpeg"
+class="card-img-top"
+alt="Gucci Jacket"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Gucci Jacket
+</h5>
+
+<p class="price">
+CFA 39,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="gucci-jacket-1"
+data-name="Gucci Jacket"
+data-price="39000"
+data-image="jack/IMG_2168.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 18 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="jack/IMG_2170.jpeg"
+class="card-img-top"
+alt="Gucci Jacket"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Gucci Jacket
+</h5>
+
+<p class="price">
+CFA 39,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="gucci-jacket-2"
+data-name="Gucci Jacket"
+data-price="39000"
+data-image="jack/IMG_2170.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- ================= ENSEMBLES ================= -->
+
+<div class="col-12 mt-5">
+
+<h2 class="h2">
+Ensembles
+</h2>
+
+</div>
+
+
+<!-- 19 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="ensembles/IMG_2127.jpeg"
+class="card-img-top"
+alt="Ensemble 1"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Ensemble 1
+</h5>
+
+<p class="price">
+CFA 65,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="ensemble-1"
+data-name="Ensemble 1"
+data-price="65000"
+data-image="ensembles/IMG_2127.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 20 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="ensembles/IMG_2128.jpeg"
+class="card-img-top"
+alt="Ensemble 2"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Ensemble 2
+</h5>
+
+<p class="price">
+CFA 72,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="ensemble-2"
+data-name="Ensemble 2"
+data-price="72000"
+data-image="ensembles/IMG_2128.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 21 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="ensembles/IMG_2129.jpeg"
+class="card-img-top"
+alt="Ensemble 3"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Ensemble 3
+</h5>
+
+<p class="price">
+CFA 43,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="ensemble-3"
+data-name="Ensemble 3"
+data-price="43000"
+data-image="ensembles/IMG_2129.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 22 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="ensembles/IMG_2133.jpeg"
+class="card-img-top"
+alt="Ensemble 4"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Ensemble 4
+</h5>
+
+<p class="price">
+CFA 49,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="ensemble-4"
+data-name="Ensemble 4"
+data-price="49000"
+data-image="ensembles/IMG_2133.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 23 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="ensembles/IMG_2134.jpeg"
+class="card-img-top"
+alt="Ensemble 5"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Ensemble 5
+</h5>
+
+<p class="price">
+CFA 62,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="ensemble-5"
+data-name="Ensemble 5"
+data-price="62000"
+data-image="ensembles/IMG_2134.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- 24 -->
+
+<div class="col-md-4">
+
+<div class="card h-100">
+
+<img 
+src="ensembles/IMG_2135.jpeg"
+class="card-img-top"
+alt="Ensemble 6"
+>
+
+<div class="card-body">
+
+<h5 class="card-title">
+Ensemble 6
+</h5>
+
+<p class="price">
+CFA 65,000
+</p>
+
+<button 
+class="btn btn-dark add-to-cart"
+data-id="ensemble-6"
+data-name="Ensemble 6"
+data-price="65000"
+data-image="ensembles/IMG_2135.jpeg">
+
+Ajouter au panier
+
+</button>
+
+</div>
+</div>
+</div>
+
+
+</div>
+</div>
+
+</section>
+
+
+<!-- ================= PANIER ================= -->
+
+<div 
+    class="offcanvas offcanvas-end"
+    tabindex="-1"
+    id="cartOffcanvas">
+
+    <div class="offcanvas-header">
+
+        <h5 class="offcanvas-title">
+            🛍️ Mon panier
+        </h5>
+
+        <button 
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas">
+        </button>
+
+    </div>
+
+
+    <div class="offcanvas-body">
+
+        <div id="cart-items">
+
+            <p class="text-muted">
+                Votre panier est vide.
+            </p>
+
+        </div>
+
+
+        <hr>
+
+
+        <div class="d-flex justify-content-between">
+
+            <strong>
+                Total :
+            </strong>
+
+            <strong id="cart-total">
+                CFA 0
+            </strong>
+
+        </div>
+
+
+        <button 
+            class="btn btn-success w-100 mt-3">
+
+            Passer la commande
+
+        </button>
+
+
+<div id="formLivraison" class="form-livraison">
+    <h2>Informations de livraison</h2>
+
+    <form>
+        <label>Nom complet</label>
+        <input type="text" placeholder="Votre nom complet" required>
+
+        <label>Numéro de téléphone</label>
+        <input type="tel" placeholder="+221 77 000 00 00" required>
+
+        <label>Adresse de livraison</label>
+        <textarea placeholder="Votre adresse complète" required></textarea>
+
+    </form>
+</div>
+
+
+
+        <button 
+            id="clear-cart"
+            class="btn btn-outline-danger w-100 mt-2">
+
+            Vider le panier
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- Bootstrap JS -->
+
+<script 
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- TON JAVASCRIPT -->
+
+<script src="script.js"></script>
+
+<footer class="footer" id="contacts">
+
+    <div class="container text-center">
+
+        <h3>EM Local</h3>
+
+        <p>
+            N'hésitez pas à nous contacter pour toute question,
+            commande ou information.
+        </p>
+
+        <div class="footer-contact">
+
+            <p>
+                <i class="bi bi-telephone-fill"></i>
+                <strong>Téléphone :</strong>
+                +221 78 194 29 74
+            </p>
+
+            <p>
+                <i class="bi bi-whatsapp"></i>
+                <strong>WhatsApp :</strong>
+                +221 78 194 29 74
+            </p>
+
+            <p>
+                <i class="bi bi-envelope-fill"></i>
+                <strong>Email :</strong>
+                codersdkr@gmail.com
+            </p>
+
+            <p>
+                <i class="bi bi-geo-alt-fill"></i>
+                <strong>Adresse :</strong>
+                Dakar, Sénégal
+            </p>
+
+        </div>
+
+        
+        </div>
+
+        
+
+        
+
+    </div>
+
+</footer>
+
+
+
+</body>
+</html>
