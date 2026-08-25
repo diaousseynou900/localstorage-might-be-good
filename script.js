@@ -483,13 +483,126 @@ searchInput.addEventListener("input", function() {
 
 });
 
+// ===============================
+// AFFICHER LE FORMULAIRE
+// ===============================
+
 const boutonCommande = document.getElementById("passerCommande");
 const formulaire = document.getElementById("formLivraison");
+const livraisonForm = document.getElementById("livraisonForm");
+const messageCommande = document.getElementById("messageCommande");
 
 boutonCommande.addEventListener("click", function () {
+
+    // Vérifier que le panier n'est pas vide
+    if (cart.length === 0) {
+        alert("Votre panier est vide.");
+        return;
+    }
+
     formulaire.classList.add("active");
 
     formulaire.scrollIntoView({
         behavior: "smooth"
     });
+
+});
+
+
+// ===============================
+// ENVOYER LA COMMANDE
+// ===============================
+
+livraisonForm.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const nom = document.getElementById("nom").value.trim();
+    const telephone = document.getElementById("telephone").value.trim();
+    const adresse = document.getElementById("adresse").value.trim();
+
+    if (!nom || !telephone || !adresse) {
+        alert("Veuillez remplir tous les champs.");
+        return;
+    }
+
+    // Calcul du total
+    let total = 0;
+
+    cart.forEach(product => {
+        total += product.price * product.quantity;
+    });
+
+
+    // Données envoyées au serveur
+    const commande = {
+        nom: nom,
+        telephone: telephone,
+        adresse: adresse,
+        produits: cart,
+        total: total
+    };
+
+
+    try {
+
+        const response = await fetch("/commandes", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(commande)
+
+        });
+
+
+        const result = await response.json();
+
+
+        if (result.success) {
+
+            messageCommande.innerHTML = `
+                <div class="alert alert-success">
+                    ✅ Commande enregistrée avec succès !
+                    <br>
+                    Merci ${nom}.
+                </div>
+            `;
+
+            // Vider le panier
+            cart = [];
+
+            saveCart();
+
+            displayCart();
+
+            // Vider le formulaire
+            livraisonForm.reset();
+
+        } else {
+
+            messageCommande.innerHTML = `
+                <div class="alert alert-danger">
+                    ❌ ${result.message}
+                </div>
+            `;
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        messageCommande.innerHTML = `
+            <div class="alert alert-danger">
+                ❌ Impossible d'envoyer la commande.
+                Vérifiez que votre serveur est lancé.
+            </div>
+        `;
+
+    }
+
 });

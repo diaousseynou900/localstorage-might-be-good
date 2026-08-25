@@ -29,9 +29,8 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="#">
-            EM Local
-        </a>
+        <a class="navbar-brand" href="#"></a>
+        <img class="img1" src="img/Contact Us.jpg" alt="">
 
         <button 
             class="navbar-toggler" 
@@ -55,11 +54,7 @@
     </a>
 </li>
 
-<li class="nav-item">
-    <a class="nav-link" href="#apropos">
-        À propos
-    </a>
-</li>
+
 
 <li class="nav-item">
     <a class="nav-link" href="#contacts">
@@ -145,7 +140,7 @@
 <div class="col-12">
 
     <h2 class="h2">
-        Shorts & Pants
+        cerave
     </h2>
 
 </div>
@@ -158,15 +153,15 @@
 <div class="card h-100">
 
 <img 
-src="shorts/IMG_2152.jpeg"
+src="img/CeraVe Moisturizer Lotion _ Daily Hydration for Normal to Dry Skin 💙🧴.jpg"
 class="card-img-top"
-alt="Camo Margiela"
+alt="Cerave creme hydratant"
 >
 
 <div class="card-body">
 
 <h5 class="card-title">
-Camo Margiela
+Cerave creme hydratant
 </h5>
 
 <p class="price">
@@ -175,8 +170,8 @@ CFA 12,000
 
 <button 
 class="btn btn-dark add-to-cart"
-data-id="camo-margiela"
-data-name="Camo Margiela"
+data-id="Cerave-creme-hydratant"
+data-name="Cerave creme hydratant"
 data-price="12000"
 data-image="shorts/IMG_2152.jpeg">
 
@@ -196,7 +191,7 @@ Ajouter au panier
 <div class="card h-100">
 
 <img 
-src="shorts/IMG_2153.jpeg"
+src="img/télécharger (1).jpg"
 class="card-img-top"
 alt="Chrome Hearts"
 >
@@ -234,7 +229,7 @@ Ajouter au panier
 <div class="card h-100">
 
 <img 
-src="shorts/IMG_2150.jpeg"
+src="img/télécharger (2).jpg"
 class="card-img-top"
 alt="Hellstar"
 >
@@ -272,7 +267,7 @@ Ajouter au panier
 <div class="card h-100">
 
 <img 
-src="shorts/IMG_2151.jpeg"
+src=""
 class="card-img-top"
 alt="Lacoste"
 >
@@ -1151,28 +1146,48 @@ Ajouter au panier
         </div>
 
 
-        <button 
-            class="btn btn-success w-100 mt-3">
-
-            Passer la commande
-
-        </button>
+      
 
 
 <div id="formLivraison" class="form-livraison">
     <h2>Informations de livraison</h2>
 
-    <form>
-        <label>Nom complet</label>
-        <input type="text" placeholder="Votre nom complet" required>
+    <form id="livraisonForm">
 
-        <label>Numéro de téléphone</label>
-        <input type="tel" placeholder="+221 77 000 00 00" required>
+        <label for="nom">Nom complet</label>
+        <input 
+            type="text" 
+            id="nom"
+            placeholder="Votre nom complet" 
+            required
+        >
 
-        <label>Adresse de livraison</label>
-        <textarea placeholder="Votre adresse complète" required></textarea>
+        <label for="telephone">Numéro de téléphone</label>
+        <input 
+            type="tel" 
+            id="telephone"
+            placeholder="+221 77 000 00 00" 
+            required
+        >
+
+        <label for="adresse">Adresse de livraison</label>
+        <textarea 
+            id="adresse"
+            placeholder="Votre adresse complète" 
+            required
+        ></textarea>
+
+        <button 
+            type="submit"
+            class="btn btn-success w-100 mt-3">
+
+            Confirmer la commande
+
+        </button>
 
     </form>
+
+    <div id="messageCommande" class="mt-3"></div>
 </div>
 
 
