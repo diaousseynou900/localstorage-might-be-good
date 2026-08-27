@@ -64,3 +64,34 @@ body {
         padding: 7px 3px;
     }
 }
+
+.navbar .nav-link {
+    font-family: cursive;
+    font-size: 15px;
+    font-weight: bold;
+    color: white !important;
+}
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+.btn-outline-success {
+    color: white !important;
+    border-color: white !important;
+}
+
+.btn-outline-success:hover {
+    background-color: white !important;
+    color: black !important;
+}
+.card-body{
+    border-radius: 32px;
+}
+.card-title{
+    font-family: cursive;
+}
+.price{
+    font-family: cursive;
+}
+.h2{
+    font-family: cursive;
+}
