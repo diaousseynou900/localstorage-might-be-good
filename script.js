@@ -1,13 +1,20 @@
-// ===============================
-// BRIGHT LOOKS - PANIER
-// ===============================
-
-let cart = JSON.parse(localStorage.getItem("brightLooksCart")) || [];
+// ======================================================
+// EM LOCAL - PANIER ET COMMANDES
+// ======================================================
 
 
-// ===============================
+// ======================================================
+// PANIER
+// ======================================================
+
+let cart = JSON.parse(
+    localStorage.getItem("brightLooksCart")
+) || [];
+
+
+// ======================================================
 // SAUVEGARDER LE PANIER
-// ===============================
+// ======================================================
 
 function saveCart() {
 
@@ -19,17 +26,25 @@ function saveCart() {
 }
 
 
-// ===============================
+// ======================================================
 // AFFICHER LE PANIER
-// ===============================
+// ======================================================
 
 function displayCart() {
 
-    const cartItems = document.getElementById("cart-items");
-    const cartCount = document.getElementById("cart-count");
-    const cartTotal = document.getElementById("cart-total");
+    const cartItems =
+        document.getElementById("cart-items");
 
-    if (!cartItems) return;
+    const cartCount =
+        document.getElementById("cart-count");
+
+    const cartTotal =
+        document.getElementById("cart-total");
+
+
+    if (!cartItems) {
+        return;
+    }
 
 
     cartItems.innerHTML = "";
@@ -44,39 +59,51 @@ function displayCart() {
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
+
             <div class="text-center py-4">
 
-                <i 
+                <i
                     class="bi bi-bag"
-                    style="font-size: 50px;">
-                </i>
+                    style="font-size: 50px;"
+                ></i>
 
                 <p class="mt-3 text-muted">
                     Votre panier est vide.
                 </p>
 
             </div>
+
         `;
 
-        cartCount.textContent = "0";
+        if (cartCount) {
+            cartCount.textContent = "0";
+        }
 
-        cartTotal.textContent = "CFA 0";
+        if (cartTotal) {
+            cartTotal.textContent = "CFA 0";
+        }
 
         return;
     }
 
 
-    // Produits du panier
+    // Produits
 
     cart.forEach((product, index) => {
 
+        const price =
+            Number(product.price || 0);
+
+        const quantity =
+            Number(product.quantity || 1);
+
         const productTotal =
-            product.price * product.quantity;
+            price * quantity;
 
 
         total += productTotal;
 
-        totalQuantity += product.quantity;
+        totalQuantity += quantity;
 
 
         cartItems.innerHTML += `
@@ -85,9 +112,10 @@ function displayCart() {
 
                 <div class="d-flex align-items-center">
 
+
                     <img
-                        src="${product.image}"
-                        alt="${product.name}"
+                        src="${product.image || ""}"
+                        alt="${product.name || "Produit"}"
                         style="
                             width: 80px;
                             height: 80px;
@@ -99,48 +127,62 @@ function displayCart() {
 
                     <div class="ms-3 flex-grow-1">
 
+
                         <h6 class="mb-1">
-                            ${product.name}
+
+                            ${product.name || "Produit"}
+
                         </h6>
 
 
                         <p class="mb-2">
-                            CFA ${product.price.toLocaleString()}
+
+                            CFA ${price.toLocaleString("fr-FR")}
+
                         </p>
 
 
                         <div class="d-flex align-items-center">
 
+
                             <button
                                 class="btn btn-sm btn-outline-dark decrease"
-                                data-index="${index}">
+                                data-index="${index}"
+                            >
                                 -
                             </button>
 
 
                             <span class="mx-3">
-                                ${product.quantity}
+
+                                ${quantity}
+
                             </span>
 
 
                             <button
                                 class="btn btn-sm btn-outline-dark increase"
-                                data-index="${index}">
+                                data-index="${index}"
+                            >
                                 +
                             </button>
 
+
                         </div>
+
 
                     </div>
 
 
                     <button
                         class="btn btn-sm btn-danger remove"
-                        data-index="${index}">
+                        data-index="${index}"
+                    >
 
                         <i class="bi bi-trash"></i>
 
                     </button>
+
 
                 </div>
 
@@ -151,199 +193,247 @@ function displayCart() {
     });
 
 
-    // Nombre de produits
+    // Nombre
 
-    cartCount.textContent = totalQuantity;
+    if (cartCount) {
+
+        cartCount.textContent =
+            totalQuantity;
+
+    }
 
 
     // Total
 
-    cartTotal.textContent =
-        "CFA " + total.toLocaleString();
+    if (cartTotal) {
+
+        cartTotal.textContent =
+            "CFA " +
+            total.toLocaleString("fr-FR");
+
+    }
 
 
-    // ===============================
-    // AUGMENTER QUANTITÉ
-    // ===============================
+    // ==================================================
+    // AUGMENTER
+    // ==================================================
 
-    document.querySelectorAll(".increase").forEach(button => {
+    document
+        .querySelectorAll(".increase")
+        .forEach(button => {
 
-        button.addEventListener("click", function () {
+            button.addEventListener(
+                "click",
+                function () {
 
-            const index =
-                Number(this.dataset.index);
+                    const index =
+                        Number(this.dataset.index);
 
+                    cart[index].quantity++;
 
-            cart[index].quantity++;
+                    saveCart();
 
+                    displayCart();
 
-            saveCart();
-
-            displayCart();
-
-        });
-
-    });
-
-
-    // ===============================
-    // DIMINUER QUANTITÉ
-    // ===============================
-
-    document.querySelectorAll(".decrease").forEach(button => {
-
-        button.addEventListener("click", function () {
-
-            const index =
-                Number(this.dataset.index);
-
-
-            if (cart[index].quantity > 1) {
-
-                cart[index].quantity--;
-
-            } else {
-
-                cart.splice(index, 1);
-
-            }
-
-
-            saveCart();
-
-            displayCart();
+                }
+            );
 
         });
 
-    });
+
+    // ==================================================
+    // DIMINUER
+    // ==================================================
+
+    document
+        .querySelectorAll(".decrease")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const index =
+                        Number(this.dataset.index);
 
 
-    // ===============================
+                    if (
+                        cart[index].quantity > 1
+                    ) {
+
+                        cart[index].quantity--;
+
+                    } else {
+
+                        cart.splice(index, 1);
+
+                    }
+
+
+                    saveCart();
+
+                    displayCart();
+
+                }
+            );
+
+        });
+
+
+    // ==================================================
     // SUPPRIMER
-    // ===============================
+    // ==================================================
 
-    document.querySelectorAll(".remove").forEach(button => {
+    document
+        .querySelectorAll(".remove")
+        .forEach(button => {
 
-        button.addEventListener("click", function () {
+            button.addEventListener(
+                "click",
+                function () {
 
-            const index =
-                Number(this.dataset.index);
+                    const index =
+                        Number(this.dataset.index);
 
+                    cart.splice(index, 1);
 
-            cart.splice(index, 1);
+                    saveCart();
 
+                    displayCart();
 
-            saveCart();
-
-            displayCart();
+                }
+            );
 
         });
-
-    });
 
 }
 
 
-// ===============================
+// ======================================================
 // AJOUTER AU PANIER
-// ===============================
+// ======================================================
 
-document.querySelectorAll(".add-to-cart").forEach(button => {
+document
+    .querySelectorAll(".add-to-cart")
+    .forEach(button => {
 
-    button.addEventListener("click", function () {
-
-        const id =
-            this.dataset.id;
-
-        const name =
-            this.dataset.name;
-
-        const price =
-            Number(this.dataset.price);
-
-        const image =
-            this.dataset.image;
+        button.addEventListener(
+            "click",
+            function () {
 
 
-        // Chercher le produit
-
-        const existingProduct =
-            cart.find(product => product.id === id);
+                const id =
+                    this.dataset.id;
 
 
-        // Si déjà présent
-
-        if (existingProduct) {
-
-            existingProduct.quantity++;
-
-        }
-
-        // Sinon nouveau produit
-
-        else {
-
-            cart.push({
-
-                id: id,
-
-                name: name,
-
-                price: price,
-
-                image: image,
-
-                quantity: 1
-
-            });
-
-        }
+                const name =
+                    this.dataset.name;
 
 
-        // Sauvegarder
-
-        saveCart();
-
-
-        // Actualiser l'affichage
-
-        displayCart();
+                const price =
+                    Number(
+                        this.dataset.price
+                    );
 
 
-        // Animation du bouton
-
-        const originalText =
-            this.textContent;
+                const image =
+                    this.dataset.image;
 
 
-        this.textContent =
-            "✓ Ajouté";
+                console.log(
+                    "PRODUIT AJOUTÉ :",
+                    {
+                        id,
+                        name,
+                        price,
+                        image
+                    }
+                );
 
 
-        this.classList.remove("btn-dark");
+                // Chercher produit existant
 
-        this.classList.add("btn-success");
+                const existingProduct =
+                    cart.find(
+                        product =>
+                            product.id === id
+                    );
 
 
-        setTimeout(() => {
+                if (existingProduct) {
 
-            this.textContent =
-                originalText;
+                    existingProduct.quantity++;
 
-            this.classList.remove("btn-success");
+                }
 
-            this.classList.add("btn-dark");
+                else {
 
-        }, 1000);
+                    cart.push({
+
+                        id: id,
+
+                        name: name,
+
+                        price: price,
+
+                        image: image,
+
+                        quantity: 1
+
+                    });
+
+                }
+
+
+                saveCart();
+
+                displayCart();
+
+
+                // Animation
+
+                const originalText =
+                    this.textContent;
+
+
+                this.textContent =
+                    "✓ Ajouté";
+
+
+                this.classList.remove(
+                    "btn-dark"
+                );
+
+
+                this.classList.add(
+                    "btn-success"
+                );
+
+
+                setTimeout(() => {
+
+                    this.textContent =
+                        originalText;
+
+                    this.classList.remove(
+                        "btn-success"
+                    );
+
+                    this.classList.add(
+                        "btn-dark"
+                    );
+
+                }, 1000);
+
+            }
+        );
 
     });
 
-});
 
-
-// ===============================
+// ======================================================
 // VIDER LE PANIER
-// ===============================
+// ======================================================
 
 const clearCartButton =
     document.getElementById("clear-cart");
@@ -357,9 +447,7 @@ if (clearCartButton) {
 
             cart = [];
 
-
             saveCart();
-
 
             displayCart();
 
@@ -369,240 +457,531 @@ if (clearCartButton) {
 }
 
 
-// ===============================
+// ======================================================
+// RECHERCHE
+// ======================================================
+
+const searchForm =
+    document.getElementById("search-form");
+
+const searchInput =
+    document.getElementById("search-input");
+
+const allProducts =
+    document.querySelectorAll(".add-to-cart");
+
+
+if (searchForm && searchInput) {
+
+
+    searchForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const searchText =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            let found = false;
+
+
+            allProducts.forEach(button => {
+
+                const productCard =
+                    button.closest(".col-md-4");
+
+
+                const productName =
+                    (
+                        button.dataset.name || ""
+                    ).toLowerCase();
+
+
+                if (
+                    searchText === "" ||
+                    productName.includes(searchText)
+                ) {
+
+                    productCard.style.display =
+                        "";
+
+                    found = true;
+
+                }
+
+                else {
+
+                    productCard.style.display =
+                        "none";
+
+                }
+
+            });
+
+
+            let noResult =
+                document.getElementById(
+                    "no-result"
+                );
+
+
+            if (!noResult) {
+
+                noResult =
+                    document.createElement("div");
+
+                noResult.id =
+                    "no-result";
+
+                noResult.className =
+                    "col-12 text-center mt-4";
+
+                noResult.innerHTML = `
+
+                    <h4>
+                        Aucun produit trouvé
+                    </h4>
+
+                    <p class="text-muted">
+                        Essayez un autre nom.
+                    </p>
+
+                `;
+
+
+                const row =
+                    document.querySelector(
+                        ".row.g-4"
+                    );
+
+
+                if (row) {
+
+                    row.prepend(noResult);
+
+                }
+
+            }
+
+
+            if (found || searchText === "") {
+
+                noResult.style.display =
+                    "none";
+
+            }
+
+            else {
+
+                noResult.style.display =
+                    "block";
+
+            }
+
+        }
+    );
+
+
+    searchInput.addEventListener(
+        "input",
+        function () {
+
+            if (
+                this.value.trim() === ""
+            ) {
+
+                allProducts.forEach(button => {
+
+                    const productCard =
+                        button.closest(".col-md-4");
+
+                    productCard.style.display =
+                        "";
+
+                });
+
+
+                const noResult =
+                    document.getElementById(
+                        "no-result"
+                    );
+
+
+                if (noResult) {
+
+                    noResult.style.display =
+                        "none";
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// FORMULAIRE DE LIVRAISON
+// ======================================================
+
+const boutonCommande =
+    document.getElementById(
+        "passerCommande"
+    );
+
+const formulaire =
+    document.getElementById(
+        "formLivraison"
+    );
+
+const livraisonForm =
+    document.getElementById(
+        "livraisonForm"
+    );
+
+const messageCommande =
+    document.getElementById(
+        "messageCommande"
+    );
+
+
+// Vérifier que les éléments existent
+
+if (
+    boutonCommande &&
+    formulaire
+) {
+
+    boutonCommande.addEventListener(
+        "click",
+        function () {
+
+
+            if (cart.length === 0) {
+
+                alert(
+                    "Votre panier est vide."
+                );
+
+                return;
+
+            }
+
+
+            formulaire.classList.add(
+                "active"
+            );
+
+
+            formulaire.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// ENVOYER LA COMMANDE
+// ======================================================
+
+if (livraisonForm) {
+
+    livraisonForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            // ==========================================
+            // INFORMATIONS CLIENT
+            // ==========================================
+
+            const nom =
+                document
+                    .getElementById("nom")
+                    .value
+                    .trim();
+
+
+            const telephone =
+                document
+                    .getElementById("telephone")
+                    .value
+                    .trim();
+
+
+            const adresse =
+                document
+                    .getElementById("adresse")
+                    .value
+                    .trim();
+
+
+            // ==========================================
+            // VÉRIFICATIONS
+            // ==========================================
+
+            if (
+                !nom ||
+                !telephone ||
+                !adresse
+            ) {
+
+                alert(
+                    "Veuillez remplir tous les champs."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !Array.isArray(cart) ||
+                cart.length === 0
+            ) {
+
+                alert(
+                    "Votre panier est vide."
+                );
+
+                return;
+
+            }
+
+
+            // ==========================================
+            // TOTAL
+            // ==========================================
+
+            let total = 0;
+
+
+            cart.forEach(product => {
+
+                total +=
+                    Number(product.price || 0) *
+                    Number(product.quantity || 1);
+
+            });
+
+
+            // ==========================================
+            // COPIE DU PANIER
+            // ==========================================
+
+            const produitsCommande =
+                cart.map(product => ({
+
+                    id: product.id,
+
+                    name: product.name,
+
+                    price: Number(
+                        product.price || 0
+                    ),
+
+                    image: product.image || "",
+
+                    quantity: Number(
+                        product.quantity || 1
+                    )
+
+                }));
+
+
+            // ==========================================
+            // OBJET COMMANDE
+            // ==========================================
+
+            const commande = {
+
+                nom: nom,
+
+                telephone: telephone,
+
+                adresse: adresse,
+
+                produits: produitsCommande,
+
+                total: total
+
+            };
+
+
+            console.log(
+                "================================"
+            );
+
+            console.log(
+                "COMMANDE ENVOYÉE AU SERVEUR :"
+            );
+
+            console.log(
+                commande
+            );
+
+            console.log(
+                "PRODUITS :",
+                commande.produits
+            );
+
+            console.log(
+                "TOTAL :",
+                commande.total
+            );
+
+            console.log(
+                "================================"
+            );
+
+
+            // ==========================================
+            // ENVOI AU SERVEUR
+            // ==========================================
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        "/commandes",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    commande
+                                )
+
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                console.log(
+                    "RÉPONSE DU SERVEUR :",
+                    result
+                );
+
+
+                if (result.success) {
+
+
+                    if (messageCommande) {
+
+                        messageCommande.innerHTML = `
+
+                            <div class="alert alert-success">
+
+                                ✅ Commande enregistrée avec succès !
+
+                                <br>
+
+                                Merci ${nom}.
+
+                            </div>
+
+                        `;
+
+                    }
+
+
+                    // Vider le panier
+
+                    cart = [];
+
+                    saveCart();
+
+                    displayCart();
+
+
+                    // Réinitialiser formulaire
+
+                    livraisonForm.reset();
+
+
+                }
+
+                else {
+
+
+                    if (messageCommande) {
+
+                        messageCommande.innerHTML = `
+
+                            <div class="alert alert-danger">
+
+                                ❌ ${result.message}
+
+                            </div>
+
+                        `;
+
+                    }
+
+                }
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "ERREUR ENVOI :",
+                    error
+                );
+
+
+                if (messageCommande) {
+
+                    messageCommande.innerHTML = `
+
+                        <div class="alert alert-danger">
+
+                            ❌ Impossible d'envoyer la commande.
+
+                            <br>
+
+                            Vérifiez que le serveur est lancé.
+
+                        </div>
+
+                    `;
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+// ======================================================
 // AFFICHAGE INITIAL
-// ===============================
+// ======================================================
 
 displayCart();
-
-const searchForm = document.getElementById("search-form");
-const searchInput = document.getElementById("search-input");
-
-const allProducts = document.querySelectorAll(".add-to-cart");
-
-searchForm.addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-    const searchText = searchInput.value
-        .trim()
-        .toLowerCase();
-
-    let found = false;
-
-    allProducts.forEach(button => {
-
-        const productCard = button.closest(".col-md-4");
-
-        const productName = button.dataset.name.toLowerCase();
-
-        if (
-            searchText === "" ||
-            productName.includes(searchText)
-        ) {
-
-            productCard.style.display = "";
-
-            found = true;
-
-        } else {
-
-            productCard.style.display = "none";
-
-        }
-
-    });
-
-
-    // Message si aucun produit n'est trouvé
-
-    let noResult = document.getElementById("no-result");
-
-    if (!noResult) {
-
-        noResult = document.createElement("div");
-
-        noResult.id = "no-result";
-
-        noResult.className =
-            "col-12 text-center mt-4";
-
-        noResult.innerHTML = `
-            <h4>
-                Aucun produit trouvé
-            </h4>
-
-            <p class="text-muted">
-                Essayez un autre nom.
-            </p>
-        `;
-
-        document.querySelector(".row.g-4").prepend(noResult);
-
-    }
-
-
-    if (found || searchText === "") {
-
-        noResult.style.display = "none";
-
-    } else {
-
-        noResult.style.display = "block";
-
-    }
-
-});
-
-
-// Rechercher aussi lorsque l'utilisateur efface le texte
-
-searchInput.addEventListener("input", function() {
-
-    if (this.value.trim() === "") {
-
-        allProducts.forEach(button => {
-
-            const productCard =
-                button.closest(".col-md-4");
-
-            productCard.style.display = "";
-
-        });
-
-        const noResult =
-            document.getElementById("no-result");
-
-        if (noResult) {
-
-            noResult.style.display = "none";
-
-        }
-
-    }
-
-});
-
-// ===============================
-// AFFICHER LE FORMULAIRE
-// ===============================
-
-const boutonCommande = document.getElementById("passerCommande");
-const formulaire = document.getElementById("formLivraison");
-const livraisonForm = document.getElementById("livraisonForm");
-const messageCommande = document.getElementById("messageCommande");
-
-boutonCommande.addEventListener("click", function () {
-
-    // Vérifier que le panier n'est pas vide
-    if (cart.length === 0) {
-        alert("Votre panier est vide.");
-        return;
-    }
-
-    formulaire.classList.add("active");
-
-    formulaire.scrollIntoView({
-        behavior: "smooth"
-    });
-
-});
-
-
-// ===============================
-// ENVOYER LA COMMANDE
-// ===============================
-
-livraisonForm.addEventListener("submit", async function(event) {
-
-    event.preventDefault();
-
-    const nom = document.getElementById("nom").value.trim();
-    const telephone = document.getElementById("telephone").value.trim();
-    const adresse = document.getElementById("adresse").value.trim();
-
-    if (!nom || !telephone || !adresse) {
-        alert("Veuillez remplir tous les champs.");
-        return;
-    }
-
-    // Calcul du total
-    let total = 0;
-
-    cart.forEach(product => {
-        total += product.price * product.quantity;
-    });
-
-
-    // Données envoyées au serveur
-    const commande = {
-        nom: nom,
-        telephone: telephone,
-        adresse: adresse,
-        produits: cart,
-        total: total
-    };
-
-
-    try {
-
-        const response = await fetch("/commandes", {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify(commande)
-
-        });
-
-
-        const result = await response.json();
-
-
-        if (result.success) {
-
-            messageCommande.innerHTML = `
-                <div class="alert alert-success">
-                    ✅ Commande enregistrée avec succès !
-                    <br>
-                    Merci ${nom}.
-                </div>
-            `;
-
-            // Vider le panier
-            cart = [];
-
-            saveCart();
-
-            displayCart();
-
-            // Vider le formulaire
-            livraisonForm.reset();
-
-        } else {
-
-            messageCommande.innerHTML = `
-                <div class="alert alert-danger">
-                    ❌ ${result.message}
-                </div>
-            `;
-
-        }
-
-    } catch (error) {
-
-        console.error(error);
-
-        messageCommande.innerHTML = `
-            <div class="alert alert-danger">
-                ❌ Impossible d'envoyer la commande.
-                Vérifiez que votre serveur est lancé.
-            </div>
-        `;
-
-    }
-
-});
