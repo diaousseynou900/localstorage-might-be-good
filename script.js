@@ -985,3 +985,74 @@ if (livraisonForm) {
 // ======================================================
 
 displayCart();
+
+// ================= MODAL PRODUIT =================
+
+const productImages = document.querySelectorAll(".product-image");
+
+const modalProductImage = document.getElementById("modalProductImage");
+const modalProductName = document.getElementById("modalProductName");
+const modalProductTitle = document.getElementById("modalProductTitle");
+const modalProductPrice = document.getElementById("modalProductPrice");
+const modalProductDescription = document.getElementById("modalProductDescription");
+const modalAddToCart = document.getElementById("modalAddToCart");
+
+let selectedProduct = null;
+
+
+// Quand le client clique sur une photo
+productImages.forEach(image => {
+
+    image.addEventListener("click", function () {
+
+        selectedProduct = {
+            name: this.dataset.name,
+            price: Number(this.dataset.price),
+            image: this.src,
+            description: this.dataset.description
+        };
+
+
+        modalProductImage.src = selectedProduct.image;
+        modalProductImage.alt = selectedProduct.name;
+
+        modalProductName.textContent = selectedProduct.name;
+
+        modalProductTitle.textContent = selectedProduct.name;
+
+        modalProductPrice.textContent =
+            "CFA " + selectedProduct.price.toLocaleString("fr-FR");
+
+        modalProductDescription.textContent =
+            selectedProduct.description;
+
+
+        const modal = new bootstrap.Modal(
+            document.getElementById("productModal")
+        );
+
+        modal.show();
+
+    });
+
+});
+
+
+// Ajouter au panier depuis le modal
+modalAddToCart.addEventListener("click", function () {
+
+    if (!selectedProduct) return;
+
+    const buttons = document.querySelectorAll(".add-to-cart");
+
+    buttons.forEach(button => {
+
+        if (button.dataset.name === selectedProduct.name) {
+
+            button.click();
+
+        }
+
+    });
+
+});
