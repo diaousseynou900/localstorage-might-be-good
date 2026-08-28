@@ -854,25 +854,25 @@ if (livraisonForm) {
             try {
 
 
-                const response =
-                    await fetch(
-                        "/commandes",
-                        {
+               const response =
+    await fetch(
+        "http://localhost:3000/commandes",
+        {
 
-                            method: "POST",
+            method: "POST",
 
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
+            headers: {
+                "Content-Type":
+                    "application/json"
+            },
 
-                            body:
-                                JSON.stringify(
-                                    commande
-                                )
+            body:
+                JSON.stringify(
+                    commande
+                )
 
-                        }
-                    );
+        }
+    );
 
 
                 const result =
