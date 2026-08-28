@@ -168,3 +168,186 @@ body {
     margin-top: auto;
     width: 100%;
 }
+
+/* =====================================
+   MON PANIER - OFFCANVAS
+   ===================================== */
+
+#cartOffcanvas {
+    width: 420px;
+    max-width: 100%;
+}
+
+/* En-tête du panier */
+#cartOffcanvas .offcanvas-header {
+    background: white;
+    color: darkgreen;
+    padding: 18px 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#cartOffcanvas .offcanvas-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Bouton fermer */
+#cartOffcanvas .btn-close {
+    filter: invert(1);
+    opacity: 1;
+}
+
+/* Corps du panier */
+#cartOffcanvas .offcanvas-body {
+    padding: 20px;
+    background: #fafafa;
+}
+
+/* Produits du panier */
+#cart-items {
+    min-height: 80px;
+}
+
+#cart-items > div {
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Ligne total */
+#cartOffcanvas hr {
+    margin: 20px 0;
+}
+
+#cartOffcanvas .d-flex.justify-content-between {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* =====================================
+   FORMULAIRE LIVRAISON
+   ===================================== */
+
+.form-livraison {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 20px;
+}
+
+.form-livraison h2 {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+/* Labels */
+.form-livraison label {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+/* Champs */
+.form-livraison input,
+.form-livraison textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    padding: 11px 12px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+    background: #fff;
+}
+
+.form-livraison textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* Quand le client clique dans un champ */
+.form-livraison input:focus,
+.form-livraison textarea:focus {
+    border-color: #000;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+
+/* =====================================
+   BOUTON CONFIRMER
+   ===================================== */
+
+#livraisonForm .btn-success {
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+#livraisonForm .btn-success:hover {
+    transform: translateY(-1px);
+}
+
+/* =====================================
+   BOUTON VIDER LE PANIER
+   ===================================== */
+
+#clear-cart {
+    border-radius: 10px;
+    padding: 11px;
+    font-weight: 500;
+}
+
+/* =====================================
+   MESSAGE COMMANDE
+   ===================================== */
+
+#messageCommande {
+    font-size: 14px;
+    text-align: center;
+    font-weight: 500;
+}
+
+
+/* =====================================
+   📱 TELEPHONE
+   ===================================== */
+
+@media (max-width: 576px) {
+
+    #cartOffcanvas {
+        width: 92%;
+    }
+
+    #cartOffcanvas .offcanvas-body {
+        padding: 15px;
+    }
+
+    #cartOffcanvas .offcanvas-title {
+        font-size: 18px;
+    }
+
+    .form-livraison {
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .form-livraison h2 {
+        font-size: 17px;
+    }
+
+    .form-livraison input,
+    .form-livraison textarea {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
