@@ -3,6 +3,8 @@ const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
 
+const PORT = 3000;
+
 
 // ======================================================
 // MIDDLEWARE
@@ -10,7 +12,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use(express.static("."));
+app.use(express.static(__dirname));
 
 
 // ======================================================
@@ -28,15 +30,13 @@ const db = new sqlite3.Database(
                 err.message
             );
 
+            return;
         }
 
-        else {
 
-            console.log(
-                "Base de données SQLite connectée"
-            );
-
-        }
+        console.log(
+            "Base de données SQLite connectée"
+        );
 
     }
 );
@@ -46,7 +46,8 @@ const db = new sqlite3.Database(
 // CRÉER LA TABLE
 // ======================================================
 
-db.run(`
+db.run(
+    `
     CREATE TABLE IF NOT EXISTS commandes (
 
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -64,26 +65,28 @@ db.run(`
         date TEXT NOT NULL
 
     )
-`, (err) => {
+    `,
+    (err) => {
 
-    if (err) {
+        if (err) {
 
-        console.error(
-            "Erreur création table :",
-            err.message
-        );
+            console.error(
+                "Erreur création table :",
+                err.message
+            );
+
+        }
+
+        else {
+
+            console.log(
+                "Table commandes prête"
+            );
+
+        }
 
     }
-
-    else {
-
-        console.log(
-            "Table commandes prête"
-        );
-
-    }
-
-});
+);
 
 
 // ======================================================
@@ -94,25 +97,17 @@ app.post(
     "/commandes",
     (req, res) => {
 
-
         console.log("");
         console.log(
             "================================"
         );
+
         console.log(
-            "NOUVELLE REQUÊTE DE COMMANDE"
+            "NOUVELLE COMMANDE"
         );
+
         console.log(
             "================================"
-        );
-
-
-        console.log(
-            "DONNÉES REÇUES :"
-        );
-
-        console.log(
-            req.body
         );
 
 
@@ -125,9 +120,9 @@ app.post(
         } = req.body;
 
 
-        // ==========================================
+        // ==================================================
         // VÉRIFICATIONS
-        // ==========================================
+        // ==================================================
 
         if (
             !nom ||
@@ -152,11 +147,6 @@ app.post(
             produits.length === 0
         ) {
 
-            console.error(
-                "AUCUN PRODUIT REÇU !"
-            );
-
-
             return res.status(400).json({
 
                 success: false,
@@ -169,9 +159,9 @@ app.post(
         }
 
 
-        // ==========================================
-        // NETTOYER LES PRODUITS
-        // ==========================================
+        // ==================================================
+        // NETTOYER PRODUITS
+        // ==================================================
 
         const produitsPropres =
             produits.map(product => ({
@@ -182,44 +172,50 @@ app.post(
                 name:
                     product.name ||
                     product.nom ||
-                    product.produit ||
                     "Produit",
 
                 price:
-                    Number(
-                        product.price || 0
-                    ),
+                    Number(product.price) || 0,
 
                 image:
                     product.image || "",
 
                 quantity:
-                    Number(
-                        product.quantity || 1
-                    )
+                    Number(product.quantity) || 1
 
             }));
 
 
-        // ==========================================
+        // ==================================================
         // TOTAL
-        // ==========================================
+        // ==================================================
 
         const totalFinal =
-            Number(total || 0);
+            produitsPropres.reduce(
+                (somme, product) => {
+
+                    return somme +
+                        (
+                            product.price *
+                            product.quantity
+                        );
+
+                },
+                0
+            );
 
 
-        // ==========================================
+        // ==================================================
         // DATE
-        // ==========================================
+        // ==================================================
 
         const date =
             new Date().toISOString();
 
 
-        // ==========================================
-        // JSON PRODUITS
-        // ==========================================
+        // ==================================================
+        // PRODUITS JSON
+        // ==================================================
 
         const produitsJSON =
             JSON.stringify(
@@ -227,24 +223,9 @@ app.post(
             );
 
 
-        console.log(
-            "PRODUITS À ENREGISTRER :"
-        );
-
-        console.log(
-            produitsPropres
-        );
-
-
-        console.log(
-            "TOTAL :",
-            totalFinal
-        );
-
-
-        // ==========================================
+        // ==================================================
         // SQL
-        // ==========================================
+        // ==================================================
 
         const sql = `
 
@@ -277,12 +258,10 @@ app.post(
 
             function (err) {
 
-
                 if (err) {
 
-
                     console.error(
-                        "ERREUR SQLITE :",
+                        "Erreur SQLite :",
                         err.message
                     );
 
@@ -299,38 +278,27 @@ app.post(
                 }
 
 
-                console.log("");
                 console.log(
-                    "================================"
+                    "Commande enregistrée !"
                 );
 
-                console.log(
-                    "COMMANDE ENREGISTRÉE !"
-                );
 
                 console.log(
                     "ID :",
                     this.lastID
                 );
 
+
                 console.log(
-                    "CLIENT :",
+                    "Client :",
                     nom
                 );
 
-                console.log(
-                    "PRODUITS :",
-                    produitsPropres
-                );
 
                 console.log(
-                    "TOTAL :",
+                    "Total :",
                     totalFinal,
                     "CFA"
-                );
-
-                console.log(
-                    "================================"
                 );
 
 
@@ -361,7 +329,6 @@ app.get(
     "/commandes",
     (req, res) => {
 
-
         db.all(
             `
             SELECT *
@@ -369,12 +336,9 @@ app.get(
             ORDER BY id DESC
             `,
             [],
-
             (err, rows) => {
 
-
                 if (err) {
-
 
                     console.error(
                         "Erreur récupération :",
@@ -395,70 +359,58 @@ app.get(
 
 
                 const commandes =
-                    rows.map(
-                        commande => {
+                    rows.map(commande => {
+
+                        let produits = [];
 
 
-                            let produits = [];
+                        try {
 
-
-                            try {
-
-                                produits =
-                                    JSON.parse(
-                                        commande.produits ||
-                                        "[]"
-                                    );
-
-                            }
-
-                            catch (error) {
-
-                                console.error(
-                                    "Erreur JSON produit :",
-                                    error
+                            produits =
+                                JSON.parse(
+                                    commande.produits || "[]"
                                 );
 
-                                produits = [];
+                        }
 
-                            }
+                        catch (error) {
 
-
-                            return {
-
-                                id:
-                                    commande.id,
-
-                                nom:
-                                    commande.nom,
-
-                                telephone:
-                                    commande.telephone,
-
-                                adresse:
-                                    commande.adresse,
-
-                                produits:
-                                    produits,
-
-                                total:
-                                    Number(
-                                        commande.total || 0
-                                    ),
-
-                                date:
-                                    commande.date
-
-                            };
+                            console.error(
+                                "Erreur JSON produits :",
+                                error
+                            );
 
                         }
-                    );
 
 
-                console.log(
-                    "COMMANDES ENVOYÉES À ADMIN :",
-                    commandes
-                );
+                        return {
+
+                            id:
+                                commande.id,
+
+                            nom:
+                                commande.nom,
+
+                            telephone:
+                                commande.telephone,
+
+                            adresse:
+                                commande.adresse,
+
+                            produits:
+                                produits,
+
+                            total:
+                                Number(
+                                    commande.total || 0
+                                ),
+
+                            date:
+                                commande.date
+
+                        };
+
+                    });
 
 
                 res.json(
@@ -479,7 +431,6 @@ app.get(
 app.delete(
     "/commandes/:id",
     (req, res) => {
-
 
         const id =
             Number(req.params.id);
@@ -509,9 +460,7 @@ app.delete(
 
             function (err) {
 
-
                 if (err) {
-
 
                     console.error(
                         "Erreur suppression :",
@@ -532,7 +481,6 @@ app.delete(
 
 
                 if (this.changes === 0) {
-
 
                     return res.status(404).json({
 
@@ -567,7 +515,8 @@ app.delete(
 // ======================================================
 
 app.listen(
-    3000,
+    PORT,
+    "0.0.0.0",
     () => {
 
         console.log("");
@@ -576,11 +525,35 @@ app.listen(
         );
 
         console.log(
-            "Serveur lancé sur"
+            "SERVEUR GIRL'S PALACE"
+        );
+
+        console.log(
+            "================================"
+        );
+
+        console.log(
+            "Ordinateur :"
         );
 
         console.log(
             "http://localhost:3000"
+        );
+
+        console.log(
+            "================================"
+        );
+
+        console.log(
+            "Pour téléphone :"
+        );
+
+        console.log(
+            "Utilise l'adresse IP affichée par ton PC"
+        );
+
+        console.log(
+            "Exemple : http://192.168.1.X:3000"
         );
 
         console.log(

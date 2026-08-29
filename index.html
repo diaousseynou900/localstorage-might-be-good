@@ -21,7 +21,7 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     >
 </head>
-<a href="https://wa.me/221771234567"
+<a href="https://wa.me/221781942974"
    target="_blank"
    class="btn btn-success rounded-circle position-fixed bottom-0 end-0 m-3 d-flex align-items-center justify-content-center"
    style="width: 45px; height: 45px; font-size: 21px; z-index: 1000;">
@@ -33,87 +33,116 @@
 
 <!-- ================= NAVBAR ================= -->
 
-<nav class="navbar navbar-expand-lg" style="background-color: black; ;">    <div class="container-fluid">
+<nav class="navbar-girl">
 
-        <a class="navbar-brand" href="#"></a>
-        <img class="img1" src="img/imgl2.jpeg" alt="">
+    <!-- GAUCHE : MENU + RECHERCHE -->
+    <div class="navbar-left">
 
-        <button 
-            class="navbar-toggler" 
-            type="button" 
-            data-bs-toggle="collapse" 
-            data-bs-target="#navbarSupportedContent">
+        <!-- MENU -->
+        <button
+            class="menu-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-label="Menu">
 
-            <span class="navbar-toggler-icon"></span>
+            <i class="bi bi-list"></i>
 
         </button>
 
-        <div 
-            class="collapse navbar-collapse" 
-            id="navbarSupportedContent">
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+<!-- ================= RECHERCHE ================= -->
 
-                <li class="nav-item">
-    <a class="nav-link active" href="#accueil">
-        Accueil
-    </a>
-</li>
+<form class="search-navbar" id="search-form">
+    <button
+        type="button"
+        class="search-button"
+        id="search-button"
+        aria-label="Rechercher">
 
+        <i class="bi bi-search"></i>
 
-
-<li class="nav-item">
-    <a class="nav-link" href="#contacts">
-        Contacts
-    </a>
-</li>
-
-
-
-            </ul>
-
-            <!-- RECHERCHE -->
-
-           <form class="d-flex" id="search-form" role="search">
-
-    <input 
-        class="form-control me-2" 
-        id="search-input"
-        type="search" 
-        placeholder="Rechercher un produit..."
-        autocomplete="off"
-    >
-
-    <button 
-        class="btn btn-outline-success" 
-        type="submit">
-        Search
     </button>
 
-</form>
+    <input
+        type="search"
+        id="search-input"
+        placeholder="Rechercher..."
+        autocomplete="off">
+
+</div>
 
 
-            <!-- PANIER -->
+    <!-- LOGO AU CENTRE -->
+    <a class="logo-center" href="#accueil">
 
-            <div class="ms-3">
+        <img
+            class="img1"
+            src="img/imgl2.jpeg"
+            alt="GIRL'S PALACE">
 
-                <button 
-                    class="cart-button"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#cartOffcanvas">
+    </a>
 
-                    <i class="bi bi-bag"></i>
 
-                    <span id="cart-count" class="cart-count">
-                        0
-                    </span>
+    <!-- DROITE : NOMBRE + PANIER -->
+    <div class="navbar-right">
 
-                </button>
+        <!-- NOMBRE D'ARTICLES -->
+        <span
+            id="cart-count"
+            class="cart-number">
 
-            </div>
+            0
 
-        </div>
+        </span>
+
+
+        <!-- PANIER -->
+        <button
+            class="cart-button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#cartOffcanvas"
+            aria-label="Panier">
+
+            <i class="bi bi-bag"></i>
+
+        </button>
+
     </div>
+
+
+    <!-- MENU QUI S'OUVRE -->
+    <div
+        class="collapse navbar-collapse menu-collapse"
+        id="navbarSupportedContent">
+
+        <ul class="navbar-nav">
+
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    href="#accueil">
+
+                    Accueil
+
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    href="#contacts">
+
+                    Contacts
+
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
 </nav>
 
 

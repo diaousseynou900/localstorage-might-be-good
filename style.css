@@ -1,353 +1,1006 @@
+/* =====================================================
+   RÉGLAGES GÉNÉRAUX
+   ===================================================== */
+
 html {
     scroll-behavior: smooth;
 }
+
 body {
     margin: 0;
+    padding: 0;
+    background: white;
 }
-.hero {
-    /* ... */
-}
-.footer{
-    background-color: rgb(249, 247, 247);
-    border-radius: 25px;
-    padding: 30px 6% 12px;
-    margin-top: 40px;
-    width: 90%;
-    justify-content: center;
+
+
+/* =====================================================
+   NAVBAR
+   ===================================================== */
+
+.navbar-girl {
+    width: 100%;
+    height: 58px;
+
+    background: black;
+
+    display: flex;
     align-items: center;
-    margin: 30px auto 0;
-    
 
-}
-.img1{
-    height: 50px;
-    width: 300px;
+    padding: 5px 8px;
+
+    position: relative;
+    z-index: 1000;
 }
 
-/* =========================
-   PRODUITS SUR TELEPHONE
-   ========================= */
 
-@media (max-width: 576px) {
+/* =====================================================
+   GAUCHE
+   ===================================================== */
 
-    .container {
-        width: 100%;
-        padding-left: 8px;
-        padding-right: 8px;
-    }
+.navbar-left {
+    display: flex;
+    align-items: center;
 
-    /* Afficher toute la photo */
-    .card-img-top {
-        width: 100%;
-        height: 180px;
-        object-fit: contain;
-        background-color: white;
-    }
+    gap: 5px;
 
-    .card-body {
-        padding: 8px;
-    }
-
-    .card-title {
-        font-size: 14px;
-        margin-bottom: 5px;
-    }
-
-    .price {
-        font-size: 14px;
-        margin-bottom: 8px;
-    }
-
-    .add-to-cart {
-        width: 100%;
-        font-size: 12px;
-        padding: 7px 3px;
-    }
+    position: relative;
+    z-index: 5;
 }
 
-.navbar .nav-link {
-    font-family: cursive;
-    font-size: 15px;
-    font-weight: bold;
-    color: white !important;
-}
-.navbar-toggler-icon {
-    filter: invert(1);
-}
-.btn-outline-success {
-    color: white !important;
-    border-color: white !important;
-}
 
-.btn-outline-success:hover {
-    background-color: white !important;
-    color: black !important;
-}
-.card-body{
-    border-radius: 32px;
-}
-.card-title{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-.price{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+/* =====================================================
+   BOUTON MENU
+   ===================================================== */
+
+.menu-button {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 4px;
+
+    background: white;
     color: black;
-}
-.h2{
-    font-family: cursive;
-}
-.lateh3{
-    font-family: 'Times New Roman', Times, serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    font-size: 17px;
+
+    cursor: pointer;
 }
 
-/* =========================
-   PRODUITS SUR ORDINATEUR
-   ========================= */
+
+/* =====================================================
+   RECHERCHE
+   ===================================================== */
+
+.search-navbar {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    margin: 0;
+}
+
+
+/* BOUTON */
+
+.search-button {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 4px;
+
+    background: white;
+    color: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.search-button:hover {
+    transform: scale(1.05);
+}
+
+
+/* INPUT */
+
+#search-input {
+    width: 0;
+
+    opacity: 0;
+
+    padding: 0;
+
+    border: none;
+
+    outline: none;
+
+    transition:
+        width 0.25s ease,
+        opacity 0.25s ease,
+        padding 0.25s ease;
+}
+
+
+/* INPUT OUVERT */
+
+#search-input.active {
+    width: 180px;
+
+    opacity: 1;
+
+    padding: 7px 10px;
+
+    border-radius: 5px;
+}
+
+
+/* =====================================================
+   LOGO
+   ===================================================== */
+
+.logo-center {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2;
+}
+
+.logo-center .img1 {
+    width: 210px;
+    height: 48px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* =====================================================
+   PANIER
+   ===================================================== */
+
+.navbar-right {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+.cart-number {
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    min-width: 12px;
+
+    text-align: center;
+}
+
+.cart-button {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 4px;
+
+    background: white;
+    color: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   MENU
+   ===================================================== */
+
+.menu-collapse {
+    position: absolute;
+
+    top: 58px;
+    left: 0;
+
+    width: 180px;
+
+    background: black;
+
+    padding: 7px;
+
+    z-index: 2000;
+}
+
+.menu-collapse .nav-link {
+    color: white !important;
+
+    font-family: cursive;
+
+    font-size: 14px;
+
+    padding: 6px 8px;
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.hero {
+    width: 100%;
+}
+
+
+/* =====================================================
+   PRODUITS
+   ===================================================== */
+
+.container {
+    width: 100%;
+}
+
+.card {
+    height: 100%;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+
+/* IMAGE */
+
+.product-image {
+    width: 100%;
+
+    height: 280px;
+
+    object-fit: contain;
+
+    background: white;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease;
+}
+
+.product-image:hover {
+    transform: scale(1.02);
+}
+
+
+/* CORPS */
+
+.card-body {
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 9px;
+}
+
+
+/* NOM */
+
+.card-title {
+    font-family:
+        'Gill Sans',
+        'Gill Sans MT',
+        Calibri,
+        'Trebuchet MS',
+        sans-serif;
+
+    font-size: 15px;
+
+    margin-bottom: 4px;
+}
+
+
+/* PRIX */
+
+.price {
+    font-family:
+        'Franklin Gothic Medium',
+        'Arial Narrow',
+        Arial,
+        sans-serif;
+
+    color: black;
+
+    font-size: 14px;
+
+    margin-bottom: 6px;
+}
+
+
+/* BOUTON */
+
+.card-body .add-to-cart {
+    width: 100%;
+
+    margin-top: auto;
+
+    font-size: 12px;
+
+    padding: 7px 4px;
+
+    border-radius: 5px;
+}
+
+
+/* =====================================================
+   TITRES
+   ===================================================== */
+
+.h2 {
+    font-family: cursive;
+}
+
+
+/* =====================================================
+   WHATSAPP
+   ===================================================== */
+
+.whatsapp-button {
+    position: fixed;
+
+    right: 15px;
+    bottom: 15px;
+
+    width: 45px;
+    height: 45px;
+
+    background: #198754;
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    font-size: 21px;
+
+    z-index: 3000;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-button:hover {
+    color: white;
+
+    transform: scale(1.05);
+}
+
+
+/* =====================================================
+   PANIER
+   ===================================================== */
+
+#cartOffcanvas {
+    width: 360px;
+
+    max-width: 90%;
+}
+
+#cartOffcanvas .offcanvas-header {
+    background: white;
+
+    color: black;
+
+    padding: 11px 14px;
+}
+
+#cartOffcanvas .offcanvas-title {
+    font-size: 16px;
+
+    font-weight: 600;
+}
+
+#cartOffcanvas .btn-close {
+    opacity: 1;
+
+    transform: scale(0.75);
+}
+
+#cartOffcanvas .offcanvas-body {
+    padding: 11px;
+
+    background: #fafafa;
+}
+
+
+/* =====================================================
+   PANIER PRODUITS
+   ===================================================== */
+
+#cart-items {
+    min-height: 60px;
+}
+
+.cart-item {
+    background: white;
+
+    border-radius: 8px;
+
+    padding: 8px;
+
+    margin-bottom: 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    box-shadow:
+        0 1px 5px rgba(0, 0, 0, 0.08);
+}
+
+.cart-item img {
+    width: 70px;
+    height: 70px;
+
+    object-fit: contain;
+
+    border-radius: 7px;
+
+    background: white;
+}
+
+.cart-item-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.cart-item-info h6 {
+    font-size: 12px;
+
+    margin: 0 0 4px;
+}
+
+.cart-item-info p {
+    font-size: 12px;
+
+    margin: 0 0 6px;
+}
+
+
+/* =====================================================
+   QUANTITÉS
+   ===================================================== */
+
+.quantity-controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.quantity-controls button {
+    width: 26px;
+    height: 26px;
+
+    border: 1px solid #222;
+
+    background: white;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.quantity-controls span {
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* SUPPRIMER */
+
+.remove {
+    border: none;
+
+    background: #dc3545;
+
+    color: white;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 5px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+
+/* PANIER VIDE */
+
+.empty-cart {
+    text-align: center;
+
+    padding: 30px 10px;
+
+    color: #777;
+}
+
+.empty-cart i {
+    font-size: 45px;
+}
+
+.empty-cart p {
+    margin-top: 10px;
+}
+
+
+/* =====================================================
+   TOTAL
+   ===================================================== */
+
+.cart-total-box {
+    background: white;
+
+    padding: 9px;
+
+    border-radius: 7px;
+
+    margin-bottom: 11px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    box-shadow:
+        0 1px 5px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =====================================================
+   FORMULAIRE
+   ===================================================== */
+
+.form-livraison {
+    background: white;
+
+    padding: 13px;
+
+    border-radius: 9px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+
+    margin-top: 11px;
+}
+
+.form-livraison h2 {
+    font-size: 16px;
+
+    font-weight: 600;
+
+    margin-bottom: 11px;
+}
+
+.form-livraison label {
+    display: block;
+
+    font-weight: 500;
+
+    font-size: 12px;
+
+    margin-top: 8px;
+
+    margin-bottom: 4px;
+}
+
+.form-livraison input,
+.form-livraison textarea {
+    width: 100%;
+
+    border: 1px solid #ddd;
+
+    border-radius: 7px;
+
+    padding: 8px;
+
+    font-size: 13px;
+
+    outline: none;
+
+    background: white;
+}
+
+.form-livraison textarea {
+    min-height: 70px;
+
+    resize: vertical;
+}
+
+.form-livraison input:focus,
+.form-livraison textarea:focus {
+    border-color: black;
+
+    box-shadow:
+        0 0 0 2px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =====================================================
+   CONFIRMER
+   ===================================================== */
+
+#livraisonForm .btn-success {
+    border-radius: 7px;
+
+    padding: 9px;
+
+    font-weight: 600;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   VIDER
+   ===================================================== */
+
+#clear-cart {
+    border-radius: 7px;
+
+    padding: 8px;
+
+    font-weight: 500;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   MODAL
+   ===================================================== */
+
+#modalProductImage {
+    width: 100%;
+
+    max-height: 450px;
+
+    object-fit: contain;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.footer {
+    background: rgb(249, 247, 247);
+
+    border-radius: 18px;
+
+    padding: 22px 5% 10px;
+
+    margin: 25px auto 0;
+
+    width: 90%;
+
+    text-align: center;
+}
+
+.lateh3 {
+    font-family:
+        'Times New Roman',
+        Times,
+        serif;
+}
+
+.footer-contact p {
+    margin-bottom: 7px;
+}
+
+
+/* =====================================================
+   TABLETTE / ORDINATEUR
+   ===================================================== */
 
 @media (min-width: 577px) {
 
     .container {
         width: 100%;
-        padding-left: 30px;
-        padding-right: 30px;
+
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
-    /* Afficher toute la photo */
-    .card-img-top {
-        width: 100%;
-        height: 350px;
-        object-fit: contain;
-        background-color: white;
-    }
-
-    .card-body {
-        padding: 15px;
-        border-radius: 32px;
-    }
-
-    .card-title {
-        font-size: 18px;
-        margin-bottom: 8px;
-    }
-
-    .price {
-        font-size: 17px;
-        margin-bottom: 12px;
-    }
-
-    .add-to-cart {
-        width: 100%;
-        font-size: 15px;
-        padding: 10px 5px;
-    }
-}
-
-.product-image {
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.product-image:hover {
-    transform: scale(1.03);
-}
-
-/* =========================
-   ALIGNEMENT BOUTONS PANIER
-   ========================= */
-
-.card {
-    height: 100%;
-}
-
-.card-body {
-    display: flex;
-    flex-direction: column;
-}
-
-.card-body .btn {
-    margin-top: auto;
-    width: 100%;
-}
-
-/* =====================================
-   MON PANIER - OFFCANVAS
-   ===================================== */
-
-#cartOffcanvas {
-    width: 420px;
-    max-width: 100%;
-}
-
-/* En-tête du panier */
-#cartOffcanvas .offcanvas-header {
-    background: white;
-    color: darkgreen;
-    padding: 18px 20px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-#cartOffcanvas .offcanvas-title {
-    font-size: 20px;
-    font-weight: 600;
-}
-
-/* Bouton fermer */
-#cartOffcanvas .btn-close {
-    filter: invert(1);
-    opacity: 1;
-}
-
-/* Corps du panier */
-#cartOffcanvas .offcanvas-body {
-    padding: 20px;
-    background: #fafafa;
-}
-
-/* Produits du panier */
-#cart-items {
-    min-height: 80px;
-}
-
-#cart-items > div {
-    background: white;
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-/* Ligne total */
-#cartOffcanvas hr {
-    margin: 20px 0;
-}
-
-#cartOffcanvas .d-flex.justify-content-between {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-/* =====================================
-   FORMULAIRE LIVRAISON
-   ===================================== */
-
-.form-livraison {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-    margin-top: 20px;
-}
-
-.form-livraison h2 {
-    font-size: 19px;
-    font-weight: 600;
-    margin-bottom: 18px;
-}
-
-/* Labels */
-.form-livraison label {
-    display: block;
-    font-weight: 500;
-    font-size: 14px;
-    margin-top: 12px;
-    margin-bottom: 6px;
-}
-
-/* Champs */
-.form-livraison input,
-.form-livraison textarea {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 9px;
-    padding: 11px 12px;
-    font-size: 14px;
-    outline: none;
-    transition: 0.2s;
-    background: #fff;
-}
-
-.form-livraison textarea {
-    min-height: 90px;
-    resize: vertical;
-}
-
-/* Quand le client clique dans un champ */
-.form-livraison input:focus,
-.form-livraison textarea:focus {
-    border-color: #000;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
-}
-
-/* =====================================
-   BOUTON CONFIRMER
-   ===================================== */
-
-#livraisonForm .btn-success {
-    border-radius: 10px;
-    padding: 12px;
-    font-weight: 600;
-    font-size: 15px;
-    transition: 0.2s;
-}
-
-#livraisonForm .btn-success:hover {
-    transform: translateY(-1px);
-}
-
-/* =====================================
-   BOUTON VIDER LE PANIER
-   ===================================== */
-
-#clear-cart {
-    border-radius: 10px;
-    padding: 11px;
-    font-weight: 500;
-}
-
-/* =====================================
-   MESSAGE COMMANDE
-   ===================================== */
-
-#messageCommande {
-    font-size: 14px;
-    text-align: center;
-    font-weight: 500;
 }
 
 
-/* =====================================
-   📱 TELEPHONE
-   ===================================== */
+/* =====================================================
+   TELEPHONE
+   ===================================================== */
 
 @media (max-width: 576px) {
 
+
+    /* NAVBAR */
+
+    .navbar-girl {
+        height: 52px;
+
+        padding: 5px 6px;
+    }
+
+
+    /* MENU */
+
+    .menu-button {
+        width: 29px;
+        height: 29px;
+
+        font-size: 15px;
+    }
+
+
+    /* RECHERCHE */
+
+    .search-button {
+        width: 29px;
+        height: 29px;
+
+        font-size: 14px;
+    }
+
+    #search-input.active {
+        width: 130px;
+
+        padding: 6px 8px;
+
+        font-size: 12px;
+    }
+
+
+    /* LOGO */
+
+    .logo-center .img1 {
+        width: 150px;
+        height: 40px;
+    }
+
+
+    /* PANIER */
+
+    .cart-button {
+        width: 29px;
+        height: 29px;
+
+        font-size: 15px;
+    }
+
+    .cart-number {
+        font-size: 11px;
+    }
+
+
+    /* MENU */
+
+    .menu-collapse {
+        top: 52px;
+
+        width: 170px;
+
+        padding: 5px;
+    }
+
+    .menu-collapse .nav-link {
+        font-size: 13px;
+
+        padding: 5px 7px;
+    }
+
+
+    /* PRODUITS */
+
+    .container {
+        width: 100%;
+
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .card {
+        border-radius: 6px;
+    }
+
+    .product-image {
+        height: 150px;
+    }
+
+    .card-body {
+        padding: 6px;
+    }
+
+    .card-title {
+        font-size: 12px;
+
+        margin-bottom: 3px;
+    }
+
+    .price {
+        font-size: 12px;
+
+        margin-bottom: 5px;
+    }
+
+    .card-body .add-to-cart {
+        font-size: 10px;
+
+        padding: 6px 2px;
+    }
+
+
+    /* PANIER */
+
     #cartOffcanvas {
-        width: 92%;
+        width: 88%;
     }
 
     #cartOffcanvas .offcanvas-body {
-        padding: 15px;
+        padding: 9px;
     }
 
     #cartOffcanvas .offcanvas-title {
-        font-size: 18px;
+        font-size: 15px;
     }
 
+
+    /* FORMULAIRE */
+
     .form-livraison {
-        padding: 15px;
-        border-radius: 12px;
+        padding: 11px;
+
+        border-radius: 8px;
     }
 
     .form-livraison h2 {
-        font-size: 17px;
+        font-size: 15px;
+    }
+
+    .form-livraison label {
+        font-size: 11px;
     }
 
     .form-livraison input,
     .form-livraison textarea {
-        font-size: 14px;
-        padding: 10px;
+        font-size: 12px;
+
+        padding: 7px;
     }
+
+
+    /* MODAL */
+
+    .modal-dialog {
+        margin: 7px;
+
+        max-width:
+            calc(100% - 14px);
+    }
+
+    .modal-content {
+        border-radius: 11px;
+
+        max-height: 96vh;
+
+        overflow: hidden;
+    }
+
+    .modal-header {
+        padding: 6px 9px;
+    }
+
+    .modal-title {
+        font-size: 13px;
+    }
+
+    .modal-body {
+        padding: 6px 9px;
+
+        overflow-y: auto;
+    }
+
+    #modalProductImage {
+        height: 130px;
+    }
+
+    .modal-body h2 {
+        font-size: 15px;
+    }
+
+    .modal-body h4 {
+        font-size: 14px;
+    }
+
+    .modal-body p {
+        font-size: 11px;
+
+        line-height: 1.25;
+    }
+
+
+    /* WHATSAPP */
+
+    .whatsapp-button {
+        width: 40px;
+        height: 40px;
+
+        right: 10px;
+        bottom: 10px;
+
+        font-size: 18px;
+    }
+
+
+    /* FOOTER */
+
+    .footer {
+        width: 94%;
+
+        padding: 18px 10px 9px;
+
+        border-radius: 14px;
+    }
+
 }
+
